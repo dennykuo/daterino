@@ -1,12 +1,12 @@
 {
   "name": "daterino",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "description": "A date range picker based on daterangepicker.js.",
   "files": [
     "dist/"
   ],
   "main": "dist/daterino.umd.js",
-  "module": "dist/daterino.mjs",
+  "module": "dist/daterino.es.js",
   "unpkg": "dist/daterino.umd.js",
   "jsdelivr": "dist/daterino.umd.js",
   "scripts": {
@@ -33,12 +33,20 @@
   "bugs": {
     "url": "https://github.com/dennykuo/daterino/issues"
   },
-  "dependencies": {
-    "daterangepicker": "^3.1.0",
-    "jquery": "^3.7.1",
-    "moment": "^2.30.1"
+  "devDependencies 的備註": {
+    "daterangepicker": "此套件依賴的 daterangepicker",
+    "jquery": "此套件依賴的 daterangepicker 需引入 jquery 但其本身沒有 import，而是仰賴全域注入",
+    "moment": "此套件依賴的 daterangepicker 需引入 moment 但其本身沒有 import，而是仰賴全域注入",
+    "jsdoc": "使用 jsdoc 撰寫 API 文件",
+    "better-docs": "jsdoc theme",
+    "vite": "打包工具",
+    "vite-plugin-css-injected-by-js": "將 css 檔案注入到 js 中",
+    "vitest": "單元測試"
   },
   "devDependencies": {
+    "daterangepicker": "^3.1.0",
+    "jquery": "^3.7.1",
+    "moment": "^2.30.1",
     "better-docs": "^2.7.3",
     "jsdoc": "^4.0.4",
     "vite": "^6.2.3",

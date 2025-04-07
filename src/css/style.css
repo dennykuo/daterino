@@ -1,0 +1,37 @@
+.daterangepicker .drp-calendar thead tr:first-child th {
+    padding-bottom: 11px;
+}
+
+.daterangepicker .drp-calendar .monthselect,
+.daterangepicker .drp-calendar .yearselect {
+    text-align: center;
+    font-size: 14px;
+    padding: 3px 2px;
+    border: 1px solid #e8e8e8;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+    /*appearance: none;*/
+    /*-webkit-appearance: none; !* Safari *!*/
+    /*-moz-appearance: none;    !* Firefox *!*/
+}
+
+.daterangepicker .drp-calendar .monthselect {
+    width: 4.4em;
+    margin-right: 8px;
+}
+
+.daterangepicker .drp-calendar .yearselect {
+    width: 6.4em;
+}
+
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+    min-width: 33px;
+    width: 33px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+}
+
+.daterangepicker th.available:hover {
+    background-color: transparent;
+}
