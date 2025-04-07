@@ -1,0 +1,48 @@
+{
+  "name": "daterino",
+  "version": "0.0.0",
+  "description": "A date range picker based on daterangepicker.js.",
+  "files": [
+    "dist/"
+  ],
+  "main": "dist/daterino.umd.js",
+  "module": "dist/daterino.mjs",
+  "unpkg": "dist/daterino.umd.js",
+  "jsdelivr": "dist/daterino.umd.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "test": "vitest",
+    "docs": "jsdoc -c jsdoc.json"
+  },
+  "keywords": [
+    "date-range",
+    "datepicker",
+    "daterangepicker",
+    "calendar",
+    "daterino"
+  ],
+  "author": "Denny Kuo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/date-range-picker.git"
+  },
+  "homepage": "https://github.com/your-username/date-range-picker",
+  "bugs": {
+    "url": "https://github.com/your-username/date-range-picker/issues"
+  },
+  "dependencies": {
+    "daterangepicker": "^3.1.0",
+    "jquery": "^3.7.1",
+    "moment": "^2.30.1"
+  },
+  "devDependencies": {
+    "better-docs": "^2.7.3",
+    "jsdoc": "^4.0.4",
+    "vite": "^6.2.3",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vitest": "^3.0.9"
+  }
+}
