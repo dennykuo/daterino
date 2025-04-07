@@ -20,7 +20,7 @@
 ### 1. 更新版本號
 
 ```bash
-npm version patch   # 或 minor / major
+npm version patch # 或 minor (主板號) / major (次版號)
 ```
 
 ### 2. 推送變更與標籤
@@ -33,7 +33,7 @@ git push --tags
 ### 3. 發佈至 npm
 
 ```bash
-npm publish public
+npm publish
 ```
 
 ---

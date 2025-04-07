@@ -1,8 +1,8 @@
-name: Generate and Deploy JSDoc
+name: Generate and Deploy JSDoc Pages
 
 on:
   push:
-    branches: [main] # 可依專案調整觸發條件
+    branches: [master] # 可依專案調整觸發條件
   workflow_dispatch: # 也可以手動觸發
 
 jobs:

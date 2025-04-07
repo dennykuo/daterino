@@ -15,7 +15,7 @@ npm install daterino
 ### HTML 範例
 
 ```html
-<input type="text" class="js-datepicker" />
+<input type="text" class="js-datepicker">
 ```
 
 ### 若使用 ESM/模組方式
