@@ -6,7 +6,7 @@
     "dist/"
   ],
   "main": "dist/daterino.umd.js",
-  "module": "dist/daterino.mjs",
+  "module": "dist/daterino.es.js",
   "unpkg": "dist/daterino.umd.js",
   "jsdelivr": "dist/daterino.umd.js",
   "scripts": {

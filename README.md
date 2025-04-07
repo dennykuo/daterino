@@ -1,4 +1,4 @@
-# Date Range Picker
+# Daterino
 
 自訂且可擴充的日期區間選擇器，基於 [daterangepicker](https://www.daterangepicker.com/) 做封裝，支援跨日自動更新、自訂區段與動態更新。
 
