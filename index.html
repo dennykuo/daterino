@@ -10,12 +10,15 @@
 </head>
 <body>
   <input class="js-datepicker" type="text" size="32" autocomplete="off">
-  
+
   <!-- ES6 方式 -->
   <script type="module">
     import { daterino } from "./src/index.js";
 
-    const picker = daterino('.js-datepicker');
+    const picker = daterino('.js-datepicker', {
+
+    });
+    
     // picker.update('2025-01-01', '2025-01-31');
     console.log(picker.data.startDate, picker.data.endDate);
   </script>

@@ -22,6 +22,7 @@ import 'daterangepicker/daterangepicker.css';
 
 import { applyDefaultOptions } from './defaults.js';
 import { isValidDateObject, isDateInRange } from './utils.js';
+import './css/style.css';
 
 /**
  * 初始化 daterino 套件
@@ -53,18 +54,6 @@ const daterino = (selector = 'input.js-datepicker', options = {}, callback = nul
     // 初始化 dateRangePicker 的內部函式，供第一次與跨日後重建使用
     const initPicker = () => {
       $(selector).daterangepicker({
-        startDate: data.startDate,
-        endDate: data.endDate,
-        minDate: options.minDate,
-        maxDate: options.maxDate,
-        minYear: options.minYear,
-        showDropdowns: true,
-        autoApply: true,
-        alwaysShowCalendars: true,
-        opens: 'center',
-        linkedCalendars: false,
-        showCustomRangeLabel: false,
-        ranges: options.ranges,
         locale: {
           format: options.dateFormat,
           daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
