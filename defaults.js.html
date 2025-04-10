@@ -107,11 +107,17 @@ export const applyDefaultOptions = (options = {}) => {
     dateFormat: dateFormat, // 日期格式
     startDate: moment().subtract(7, 'days').format(dateFormat), // 起始日期，預設為 7 天前
     endDate: moment().subtract(1, 'days').format(dateFormat), // 結束日期，預設為昨天
-    minDate: null, // 可選擇的最小日期，預設為 null
+    minDate: false, // 可選擇的最小日期，預設為 false (設為 null，月份前進後退的箭頭會失效)
     maxDate: moment().subtract(1, 'days').format(dateFormat), // 可選擇的最大日期，預設為昨天
-    minYear: null, // 可選擇的最小年份
+    minYear: false, // 可選擇的最小年份
     ranges: options.ranges || getPresetRanges(), // 快速選擇的日期範圍，沒有值得話帶入預設值
-    ...options,
+    showDropdowns: true,
+    autoApply: true,
+    alwaysShowCalendars: true,
+    opens: 'center',
+    linkedCalendars: false,
+    showCustomRangeLabel: false,
+    ...options, // 合併使用者傳入的選項，相同項目以使用者傳入為覆蓋
   };
 };
 
