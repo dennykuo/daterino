@@ -1,6 +1,6 @@
 {
   "name": "daterino",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A date range picker based on daterangepicker.js.",
   "files": [
     "dist/"
