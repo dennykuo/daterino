@@ -10,30 +10,33 @@
 </head>
 <body>
   <input class="js-datepicker" type="text" size="32" autocomplete="off">
-
+  
   <!-- ES6 方式 -->
-  <!-- <script type="module"> -->
-  <!--   import { daterino } from "./src/index.js"; -->
+  <script type="module">
+    import { daterino } from "./src/index.js";
 
-  <!--   const picker = daterino('.js-datepicker'); -->
-  <!--   // picker.update('2025-01-01', '2025-01-31'); -->
-  <!--   console.log(picker.data.startDate, picker.data.endDate); -->
-  <!-- </script> -->
+    const picker = daterino('.js-datepicker', {
+
+    });
+    
+    // picker.update('2025-01-01', '2025-01-31');
+    console.log(picker.data.startDate, picker.data.endDate);
+  </script>
 
   <!-- UMD 方式 -->
-  <script src="../dist/daterino.umd.js"></script>
-  <script>
-    const picker = daterino.daterino('.js-datepicker', {
-      startDate: '2025-01-01',
-      endDate: '2025-01-15'
-    }, (start, end) => {
-      console.log('選擇的日期:', start, end);
-    });
+  <!-- <script src="../dist/daterino.umd.js"></script> -->
+  <!-- <script> -->
+  <!--   const picker = daterino.daterino('.js-datepicker', { -->
+  <!--     startDate: '2025-01-01', -->
+  <!--     endDate: '2025-01-15' -->
+  <!--   }, (start, end) => { -->
+  <!--     console.log('選擇的日期:', start, end); -->
+  <!--   }); -->
 
-    // 可由 JS 更新日期
-    picker.update('2025-02-01', '2025-02-10');
+  <!--   // 可由 JS 更新日期 -->
+  <!--   picker.update('2025-02-01', '2025-02-10'); -->
 
-    console.log(picker, picker.startDate, picker.data.endDate);
-  </script>
+  <!--   console.log(picker, picker.startDate, picker.data.endDate); -->
+  <!-- </script> -->
 </body>
 </html>

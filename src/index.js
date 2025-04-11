@@ -8,13 +8,21 @@ export {
   daterino as Daterino // 和 Vite 的 lib.name 對齊
 };
 
-import $ from 'jquery';  // daterangepicker 自己沒有 import 他們，而是仰賴全域注入
+// 此套件依賴 daterangepicker，但其對依賴 (jQuery、moment) 都沒有做 import，而是仰賴全域注入，這邊需將這些依賴注入
+import jQuery from 'jquery'; // 避免重複在全域註冊，導致錯誤 (注意這邊不直接使用 import $ from 'jquery')
+const $ = typeof window !== 'undefined' && window.jQuery
+  ? window.jQuery
+  : jQuery;
+
 import moment from 'moment'; // daterangepicker 自己沒有 import 他們，而是仰賴全域注入
+window.moment = moment; // 讓 moment 可以在全域使用，daterangepicker 需要
+
 import 'daterangepicker/daterangepicker.css';
+// end daterangepicker 依賴注入
+
 import { applyDefaultOptions } from './defaults.js';
 import { isValidDateObject, isDateInRange } from './utils.js';
-
-window.moment = moment; // 讓 moment 可以在全域使用，daterangepicker 需要
+import './css/style.css';
 
 /**
  * 初始化 daterino 套件
@@ -46,18 +54,6 @@ const daterino = (selector = 'input.js-datepicker', options = {}, callback = nul
     // 初始化 dateRangePicker 的內部函式，供第一次與跨日後重建使用
     const initPicker = () => {
       $(selector).daterangepicker({
-        startDate: data.startDate,
-        endDate: data.endDate,
-        minDate: options.minDate,
-        maxDate: options.maxDate,
-        minYear: options.minYear,
-        showDropdowns: true,
-        autoApply: true,
-        alwaysShowCalendars: true,
-        opens: 'center',
-        linkedCalendars: false,
-        showCustomRangeLabel: false,
-        ranges: options.ranges,
         locale: {
           format: options.dateFormat,
           daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
@@ -75,21 +71,19 @@ const daterino = (selector = 'input.js-datepicker', options = {}, callback = nul
       }, function(newStartDate, newEndDate) {
         // ----------------------------
         // 選擇日期後的相關處理及執行 callback
+        // 因依賴套件在日期沒有變動時，就不執行此 callback，所以不用在這邊判斷是否選擇不同日期
         // ----------------------------
         // 將 moment 物件轉換為字串
         newStartDate = newStartDate.format(options.dateFormat);
         newEndDate = newEndDate.format(options.dateFormat);
 
-        const isChanged = newStartDate !== data.startDate || newEndDate !== data.endDate;
-        if (isChanged) {
-          // 更新內部狀況
-          data.startDate = newStartDate;
-          data.endDate = newEndDate;
+        // 更新內部狀況
+        data.startDate = newStartDate;
+        data.endDate = newEndDate;
 
-          // 執行傳入的 callback 函式
-          if (typeof callback === 'function') {
-            callback(data.startDate, data.endDate);
-          }
+        // 執行傳入的 callback 函式
+        if (typeof callback === 'function') {
+          callback(data.startDate, data.endDate);
         }
       });
 
@@ -141,6 +135,7 @@ const daterino = (selector = 'input.js-datepicker', options = {}, callback = nul
   return {
     data: data,
     // 可由回傳的物件來更新日期
+    // TODO: 可加上 callback 參數，如果日期沒變也要 callback
     update: (newStartDate = null, newEndDate = null) => {
       handleUpdateDate(data, options, newStartDate, newEndDate);
     }
