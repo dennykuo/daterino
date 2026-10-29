@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dennykuo/daterino.git"
+    "url": "git+https://github.com/dennykuo/daterino.git"
   },
   "homepage": "https://github.com/dennykuo/daterino",
   "bugs": {
