@@ -66,7 +66,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-daterino.html">daterino</a></li></ul><h3>Global</h3><ul><li><a href="global.html#applyDefaultOptions">applyDefaultOptions</a></li><li><a href="global.html#getPresetRanges">getPresetRanges</a></li><li><a href="global.html#isDateInRange">isDateInRange</a></li><li><a href="global.html#isValidDateObject">isValidDateObject</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-daterino.html">daterino</a></li></ul><h3>Global</h3><ul><li><a href="global.html#applyDefaultOptions">applyDefaultOptions</a></li><li><a href="global.html#getDateBounds">getDateBounds</a></li><li><a href="global.html#getPresetRanges">getPresetRanges</a></li><li><a href="global.html#isDateInRange">isDateInRange</a></li><li><a href="global.html#resolve">resolve</a></li></ul></div>
                 
             </nav>
         </div>
@@ -198,6 +198,185 @@
         <div class='vertical-section'>
             <h1>Methods</h1>
             <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~closeSilently">
+        <a class="href-link" href="#~closeSilently">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                closeSilently<span class="signature">($elements)</span><span class="type-signature"> &rarr; {jQuery}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        關閉開啟中的實例並捨棄尚未套用的選取（不觸發 callback），供重建前呼叫
+WHY: daterangepicker 的 remove() 不會關閉實例，舊實例的 document 事件仍在；之後點外部時它的 hide()
+     會把未套用的選取當成選定送進 callback，並把舊區間寫回 input
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>$elements</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">jQuery</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">綁定 daterangepicker 的元素</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line330">line 330</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>- 原本開啟中的元素</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">jQuery</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
             
                 <div class="member">
 
@@ -368,7 +547,7 @@
       </td>
   
 
-  <td class="description last">預設的開始日期（格式: YYYY-MM-DD）</td>
+  <td class="description last">預設的開始日期（格式同 dateFormat），預設為 6 天前</td>
 </tr>
 
   
@@ -405,7 +584,7 @@
       </td>
   
 
-  <td class="description last">預設的結束日期（格式: YYYY-MM-DD）</td>
+  <td class="description last">預設的結束日期（格式同 dateFormat），預設為今天</td>
 </tr>
 
   
@@ -419,6 +598,15 @@
   
       
 <code class="param-type">string</code>
+|
+
+<code class="param-type">Date</code>
+|
+
+<code class="param-type">moment.Moment</code>
+|
+
+<code class="param-type">function</code>
 
 
   
@@ -442,7 +630,8 @@
       </td>
   
 
-  <td class="description last">最小允許選擇的日期</td>
+  <td class="description last">最小允許選擇的日期；
+       傳入函式時，每次建立元件（含跨日重建、setOptions）都會重新求值</td>
 </tr>
 
   
@@ -456,6 +645,15 @@
   
       
 <code class="param-type">string</code>
+|
+
+<code class="param-type">Date</code>
+|
+
+<code class="param-type">moment.Moment</code>
+|
+
+<code class="param-type">function</code>
 
 
   
@@ -479,7 +677,85 @@
       </td>
   
 
-  <td class="description last">最大允許選擇的日期</td>
+  <td class="description last">最大允許選擇的日期，預設為今天；
+       傳入函式時同 minDate</td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>ranges</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+|
+
+<code class="param-type">function</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">快速選擇區段 { 名稱: [開始, 結束] }，或回傳該物件的函式</td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>autoApply</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">boolean</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">選完日期是否直接套用，預設為 false（顯示套用 / 取消按鈕）</td>
 </tr>
 
   
@@ -642,7 +918,7 @@
         <p class="tag-source">
             <a href="index.js.html" class="button">View Source</a>
             <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line41">line 41</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line49">line 49</a>
             </span>
         </p>
     
@@ -673,7 +949,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'>- 回傳包含 data 狀態與 update 方法的物件</div>
+    <div class='param-desc column is-7'>- 回傳包含 data 狀態與 update、setOptions 方法的物件</div>
     
     
     <div class='column is-5 has-text-left'>
@@ -814,7 +1090,7 @@
 
   
 
-  <td class="description last">初始化時的設定選項</td>
+  <td class="description last">目前的設定選項（含 setOptions 合併的變更）</td>
 </tr>
 
 
@@ -932,7 +1208,7 @@
         <p class="tag-source">
             <a href="index.js.html" class="button">View Source</a>
             <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line174">line 174</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line234">line 234</a>
             </span>
         </p>
     
@@ -1033,7 +1309,7 @@
         <p class="tag-source">
             <a href="index.js.html" class="button">View Source</a>
             <span>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line150">line 150</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line210">line 210</a>
             </span>
         </p>
     
@@ -1078,6 +1354,1038 @@
                 
         </div>
     </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~needsFullClamp">
+        <a class="href-link" href="#~needsFullClamp">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                needsFullClamp<span class="signature">(picker)</span><span class="type-signature"> &rarr; {boolean}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        daterangepicker 建構時只把起日夾到下限、迄日夾到上限（daterangepicker.js:189-195）；
+起日晚於上限、迄日早於下限（兩者都會讓起迄顛倒）或超過 maxSpan 時，才需要再走 setStartDate / setEndDate 的完整夾取
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>picker</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">daterangepicker 實例</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line288">line 288</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">boolean</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~preserveElementData">
+        <a class="href-link" href="#~preserveElementData">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                preserveElementData<span class="signature">($elements, pickerOptions)</span><span class="type-signature"> &rarr; {function}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        保存元素上呼叫端自己的 jQuery data，回傳重建後寫回用的函式
+WHY: 重建時舊實例的 remove() 會 removeData() 清掉元素上所有 jQuery data（daterangepicker.js:1560）；
+     daterangepicker 建構時又會把選項複製進元素 data（daterangepicker.js:97），這些鍵與實例本身不保存，避免舊選項帶進新實例
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>$elements</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">jQuery</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">綁定 daterangepicker 的元素</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>pickerOptions</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">這次要傳給 daterangepicker 的選項</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line351">line 351</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">function</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~setOptions">
+        <a class="href-link" href="#~setOptions">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                setOptions<span class="signature">(partial<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        更新元件選項（例如同一頁切換品牌時，改變可選的上限）
+- 合併進目前的選項，未傳入的選項維持原值；minDate / maxDate / ranges 同樣可傳入函式
+- 元件已初始化時立即重建，並把目前的選取夾進新的上下限（夾回後的日期可由 data 取得）
+- 元件尚未初始化時只合併選項，待初始化時一併套用
+- 不觸發 callback（與 update() 一致）；重建後會再發出一次 daterangepicker:ready 事件
+- 開啟中呼叫時維持開啟，但會捨棄尚未套用的選取
+- startDate / endDate 只是初始值，重建一律沿用目前的選取；要變更選取請用 update()
+- 變更 dateFormat 時，目前的選取會轉成新格式；字串型的 minDate / maxDate / ranges 請一併以新格式傳入
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>partial</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          {}
+      
+      </td>
+  
+
+  <td class="description last">欲變更的選項，可用欄位同 daterino() 的 options</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line188">line 188</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~syncSelection">
+        <a class="href-link" href="#~syncSelection">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                syncSelection<span class="signature">(data, options, push<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        把 data 的選取交給 daterangepicker，再把它調整後的結果讀回 data
+WHY: daterangepicker 會默默調整日期（截到上下限、結束早於開始時對齊開始、maxSpan 等），
+     data 若留著原值，之後 update() 以相同日期呼叫時會被「日期並無更新」提早 return，畫面顯示錯的區間
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">套件的內部狀態資料</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">目前的設定選項</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>push</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">boolean</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          true
+      
+      </td>
+  
+
+  <td class="description last">是否把 data 寫進元件；剛建構完的元件已帶入 data，只在建構的夾取不足時才需要</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line299">line 299</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~writeSelection">
+        <a class="href-link" href="#~writeSelection">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                writeSelection<span class="signature">(data, start, end, format)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        把 moment 選取依 dateFormat 寫回 data
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">套件的內部狀態資料</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>start</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">moment.Moment</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">開始日期</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>end</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">moment.Moment</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">結束日期</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>format</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">日期格式</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="index.js.html" class="button">View Source</a>
+            <span>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line277">line 277</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -66,7 +66,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-daterino.html">daterino</a></li></ul><h3>Global</h3><ul><li><a href="global.html#applyDefaultOptions">applyDefaultOptions</a></li><li><a href="global.html#getPresetRanges">getPresetRanges</a></li><li><a href="global.html#isDateInRange">isDateInRange</a></li><li><a href="global.html#isValidDateObject">isValidDateObject</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-daterino.html">daterino</a></li></ul><h3>Global</h3><ul><li><a href="global.html#applyDefaultOptions">applyDefaultOptions</a></li><li><a href="global.html#getDateBounds">getDateBounds</a></li><li><a href="global.html#getPresetRanges">getPresetRanges</a></li><li><a href="global.html#isDateInRange">isDateInRange</a></li><li><a href="global.html#resolve">resolve</a></li></ul></div>
                 
             </nav>
         </div>
@@ -215,7 +215,7 @@
         <p class="tag-source">
             <a href="defaults.js.html" class="button">View Source</a>
             <span>
-                <a href="defaults.js.html">defaults.js</a>, <a href="defaults.js.html#line16">line 16</a>
+                <a href="defaults.js.html">defaults.js</a>, <a href="defaults.js.html#line17">line 17</a>
             </span>
         </p>
     
@@ -235,6 +235,184 @@
         <div class='vertical-section'>
             <h1>Methods</h1>
             <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getDateBounds">
+        <a class="href-link" href="#getDateBounds">#</a>
+        
+        <span class="code-name">
+            
+                getDateBounds<span class="signature">(options)</span><span class="type-signature"> &rarr; {Object}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        依 options 求出目前的可選上下限（皆為當地時間的 moment）
+WHY: 不可用 new Date('YYYY-MM-DD')，它會以 UTC 解析，在 UTC+8 會落在當地 08:00，
+     導致上下限當天被誤判為超出範圍；一律依 dateFormat 以當地時間解析
+- 未開 timePicker 時以「整天」為單位：下限取當天開始、上限取當天結束
+- 開了 timePicker 則保留呼叫端給的精確時間（例如上限為「現在」）
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Object</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">套件的設定選項</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils.js.html" class="button">View Source</a>
+            <span>
+                <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line26">line 26</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>- min 為 null 表示不限；
+         未設定 maxDate 時沿用既有行為，以今天為上限</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Object</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
             
                 <div class="member">
 
@@ -305,7 +483,7 @@
         <p class="tag-source">
             <a href="defaults.js.html" class="button">View Source</a>
             <span>
-                <a href="defaults.js.html">defaults.js</a>, <a href="defaults.js.html#line41">line 41</a>
+                <a href="defaults.js.html">defaults.js</a>, <a href="defaults.js.html#line45">line 45</a>
             </span>
         </p>
     
@@ -420,7 +598,7 @@
   <td class="type">
   
       
-<code class="param-type">Date</code>
+<code class="param-type">moment.Moment</code>
 
 
   
@@ -445,7 +623,7 @@
   <td class="type">
   
       
-<code class="param-type">Date</code>
+<code class="param-type">moment.Moment</code>
 |
 
 <code class="param-type">null</code>
@@ -473,7 +651,7 @@
   <td class="type">
   
       
-<code class="param-type">Date</code>
+<code class="param-type">moment.Moment</code>
 |
 
 <code class="param-type">null</code>
@@ -534,7 +712,7 @@
         <p class="tag-source">
             <a href="utils.js.html" class="button">View Source</a>
             <span>
-                <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line21">line 21</a>
+                <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line47">line 47</a>
             </span>
         </p>
     
@@ -591,12 +769,12 @@
 
 
     
-    <h4 class="name" id="isValidDateObject">
-        <a class="href-link" href="#isValidDateObject">#</a>
+    <h4 class="name" id="resolve">
+        <a class="href-link" href="#resolve">#</a>
         
         <span class="code-name">
             
-                isValidDateObject<span class="signature">(date)</span><span class="type-signature"> &rarr; {boolean}</span>
+                resolve<span class="signature">(value)</span><span class="type-signature"> &rarr; {*}</span>
             
         </span>
     </h4>
@@ -605,7 +783,8 @@
     
     
     <div class="description">
-        檢查是否為有效的 Date 物件
+        將「值或回傳值的函式」求值，非函式則原樣回傳
+函式型選項（如 maxDate: () => moment()）在每次建立元件時重新求值，跨日重建後才會跟著更新
     </div>
     
 
@@ -643,13 +822,16 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>date</code></td>
+      <td class="name"><code>value</code></td>
   
 
   <td class="type">
   
       
 <code class="param-type">*</code>
+|
+
+<code class="param-type">function</code>
 
 
   
@@ -659,7 +841,7 @@
 
   
 
-  <td class="description last">欲檢查的物件</td>
+  <td class="description last">選項值，或回傳選項值的函式</td>
 </tr>
 
 
@@ -707,7 +889,7 @@
         <p class="tag-source">
             <a href="utils.js.html" class="button">View Source</a>
             <span>
-                <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line12">line 12</a>
+                <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line14">line 14</a>
             </span>
         </p>
     
@@ -738,13 +920,13 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'>- 是否為有效的 Date</div>
+    <div class='param-desc column is-7'>- 求值後的選項值</div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<code class="param-type">boolean</code>
+<code class="param-type">*</code>
 
 
     </div>
