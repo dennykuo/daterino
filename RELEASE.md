@@ -20,7 +20,7 @@
 ### 1. 更新版本號
 
 ```bash
-npm version patch # 或 minor (主板號) / major (次版號)
+npm version patch # 或 minor (次版號) / major (主版號)
 ```
 
 ### 2. 推送變更與標籤

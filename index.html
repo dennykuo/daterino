@@ -16,7 +16,8 @@
     import { daterino } from "./src/index.js";
     
     const picker = daterino('.js-datepicker', {
-
+    }, (start, end) => {
+      console.log('選擇的日期:', start, end);
     });
     
     // picker.update('2025-01-01', '2025-01-31');

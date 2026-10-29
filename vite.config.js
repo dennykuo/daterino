@@ -25,5 +25,8 @@ export default defineConfig({
     dir: './test',
     globals: true,
     environment: 'jsdom',
+    // 固定時區為 UTC+8：new Date('YYYY-MM-DD') 會以 UTC 解析，這類「差一天」的錯誤只在非 UTC 時區重現，
+    // 不固定的話在 UTC 的 CI 上相關測試會假性通過
+    env: { TZ: 'Asia/Taipei' },
   },
 });
